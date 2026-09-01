@@ -19,13 +19,13 @@ CodeLens is a developer assistance tool that provides automated code reviews, vu
 
 ## Demo
 
+**Live Application:** [https://codelens-ai-pi.vercel.app](https://codelens-ai-pi.vercel.app)
+
 A local demonstration can be run using the instructions in the [Installation](#installation) section.
 
 - Local Frontend: `http://localhost:5173`
 - Local Backend API: `http://localhost:8000`
 - Interactive API Docs (Swagger): `http://localhost:8000/docs`
-
-> *Live deployment URL will be updated once hosted in production.*
 
 ---
 
