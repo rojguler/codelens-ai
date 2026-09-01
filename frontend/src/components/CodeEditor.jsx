@@ -8,7 +8,6 @@ import {
   FlaskConical,
   Sparkles,
   RotateCcw,
-  Loader2,
 } from 'lucide-react'
 
 const LANGUAGES = [
@@ -81,9 +80,6 @@ export default function CodeEditor({
   const charCount = code.length
   const isEmpty = !code.trim()
 
-  const lineCount = Math.max((code.match(/\n/g) || []).length + 1, 16)
-  const lines = Array.from({ length: lineCount }, (_, i) => i + 1)
-
   const handleScroll = (e) => {
     if (gutterRef.current) {
       gutterRef.current.scrollTop = e.target.scrollTop
@@ -131,10 +127,12 @@ export default function CodeEditor({
                 aria-pressed={isActive}
               >
                 <div className="mode-card-header">
-                  <span className="mode-card-icon" aria-hidden="true">
-                    <IconComponent size={14} strokeWidth={2} />
-                  </span>
-                  <span className="mode-card-title">{m.label}</span>
+                  <div className="mode-card-icon-container">
+                    <span className="mode-card-icon" aria-hidden="true">
+                      <IconComponent size={14} strokeWidth={2} />
+                    </span>
+                  </div>
+                  <span className="mode-card-name">{m.label}</span>
                 </div>
                 <span className="mode-card-desc">{m.description}</span>
               </button>
@@ -160,17 +158,12 @@ export default function CodeEditor({
           </select>
         </div>
         <span className="char-counter">
-          {charCount.toLocaleString()} chars · {lineCount} lines
+          {charCount.toLocaleString()} chars
         </span>
       </div>
 
-      {/* Editor Workspace with Line Numbers */}
+      {/* Editor Workspace */}
       <div className="editor-workspace">
-        <div className="editor-gutter" ref={gutterRef} aria-hidden="true">
-          {lines.map((num) => (
-            <div key={num}>{num}</div>
-          ))}
-        </div>
         <textarea
           ref={textareaRef}
           id="code-textarea"
@@ -199,12 +192,12 @@ export default function CodeEditor({
         >
           {loading ? (
             <>
-              <Loader2 size={15} className="animate-spin" aria-hidden="true" />
+              <Sparkles size={16} className="animate-sparkle" aria-hidden="true" />
               <span>Analyzing...</span>
             </>
           ) : (
             <>
-              <Sparkles size={15} aria-hidden="true" />
+              <Sparkles size={16} aria-hidden="true" />
               <span>Analyze Code</span>
             </>
           )}

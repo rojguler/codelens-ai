@@ -12,9 +12,7 @@ import {
   Copy,
   Check,
   AlertCircle,
-  Loader2,
   X,
-  Sparkles,
 } from 'lucide-react'
 
 /* ── Severity Badge Parser ─────────────────────────────────────────────────── */
@@ -179,17 +177,16 @@ export default function AnalysisResult({ result, error, loading, onDismissError 
 
       {/* Loading State */}
       {loading && (
-        <div className="loading-state" role="status" aria-live="polite">
-          <div className="loading-spinner-wrap">
-            <div className="sparkle-cluster">
+        <div className="results-loading" role="status" aria-live="polite">
+          <div className="magical-orb-container">
+            <div className="magical-orb" />
+            <div className="magical-ring-1" />
+            <div className="magical-ring-2" />
+            <div className="magical-sparkles">
               <span className="sparkle-dot" />
               <span className="sparkle-dot" />
               <span className="sparkle-dot" />
               <span className="sparkle-dot" />
-              <span className="sparkle-cluster-ring" />
-              <span className="sparkle-cluster-ring-outer" />
-              <span className="sparkle-cluster-halo" />
-              <Loader2 size={26} className="animate-spin" />
             </div>
           </div>
           <div className="loading-title">Analyzing your code...</div>
@@ -200,18 +197,20 @@ export default function AnalysisResult({ result, error, loading, onDismissError 
       {/* Empty State */}
       {!loading && !result && !error && (
         <div className="results-empty" role="status">
-          <div className="empty-state-icon">
-            <Code2 size={24} strokeWidth={1.75} />
+          <div className="empty-state-icon-wrapper">
+            <div className="empty-state-icon">
+              <Code2 size={32} strokeWidth={1.75} />
+            </div>
+            <div className="empty-state-sparkles" aria-hidden="true">
+              <span className="sparkle-dot" />
+              <span className="sparkle-dot" />
+              <span className="sparkle-dot" />
+            </div>
           </div>
           <div className="empty-state-title">Ready when you are</div>
           <p className="empty-state-desc">
             Paste your code, choose an analysis mode, and let CodeLens take a look.
           </p>
-          <div className="sparkle-decoration" aria-hidden="true">
-            <Sparkles size={12} />
-            <Sparkles size={12} />
-            <Sparkles size={12} />
-          </div>
         </div>
       )}
 
