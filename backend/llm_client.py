@@ -205,10 +205,7 @@ def analyze_code(code: str, language: str, mode: str = "full_review") -> dict:
     prompt = _build_prompt(code, language, mode)
 
     try:
-        response = client.models.generate_content(
-            model=MODEL,
-            contents=prompt,
-        )
+        response = client.models.generate_content(model=MODEL, contents=prompt)
     except Exception as e:
         err_msg = str(e)
         if "429" in err_msg or "RESOURCE_EXHAUSTED" in err_msg or "quota" in err_msg.lower():
@@ -299,10 +296,7 @@ def analyze_repo(meta: dict, context: str, files_list: list[str]) -> dict:
     prompt = _build_repo_prompt(meta, context, files_list)
 
     try:
-        response = client.models.generate_content(
-            model=MODEL,
-            contents=prompt,
-        )
+        response = client.models.generate_content(model=MODEL, contents=prompt)
     except Exception as e:
         err_msg = str(e)
         if "429" in err_msg or "RESOURCE_EXHAUSTED" in err_msg or "quota" in err_msg.lower():
