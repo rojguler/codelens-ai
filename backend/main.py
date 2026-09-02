@@ -17,6 +17,7 @@ from github_client import parse_github_url, build_repo_context
 load_dotenv()
 
 app = FastAPI(title="CodeLens API")
+handler = app
 
 # ── CORS configuration ────────────────────────────────────────────────────────
 default_origins = [

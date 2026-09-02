@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "backend/main.py": {
-      "maxDuration": 60
-    }
-  },
   "builds": [
     {
       "src": "frontend/package.json",
