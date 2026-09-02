@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Info, ScanSearch, Loader2 } from 'lucide-react'
+import { X, ScanSearch, Loader2 } from 'lucide-react'
 import GithubIcon from './GithubIcon.jsx'
 
 export default function RepoInput({ onAnalyze, loading }) {
@@ -45,10 +45,7 @@ export default function RepoInput({ onAnalyze, loading }) {
         )}
       </div>
 
-      <div className="repo-hint">
-        <Info size={13} aria-hidden="true" style={{ flexShrink: 0 }} />
-        <span>Supports public GitHub repositories. CodeLens inspects up to 20 key source files.</span>
-      </div>
+
 
       <button
         id="repo-analyze-btn"

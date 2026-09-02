@@ -109,37 +109,40 @@ export default function CodeEditor({
         <span className="panel-badge">Editor</span>
       </div>
 
-      {/* Mode Selector Cards */}
-      <div className="mode-selector-container">
-        <div className="mode-section-label">Analysis Mode</div>
-        <div className="mode-grid" role="group" aria-label="Analysis mode options">
-          {ANALYSIS_MODES.map((m) => {
-            const IconComponent = m.icon
-            const isActive = mode === m.id
-            return (
-              <button
-                key={m.id}
-                id={`mode-${m.id}`}
-                type="button"
-                className={`mode-card ${isActive ? 'mode-card--active' : ''}`}
-                onClick={() => onModeChange(m.id)}
-                disabled={loading}
-                aria-pressed={isActive}
-              >
-                <div className="mode-card-header">
-                  <div className="mode-card-icon-container">
-                    <span className="mode-card-icon" aria-hidden="true">
-                      <IconComponent size={14} strokeWidth={2} />
-                    </span>
-                  </div>
-                  <span className="mode-card-name">{m.label}</span>
-                </div>
-                <span className="mode-card-desc">{m.description}</span>
-              </button>
-            )
-          })}
+      {/* Mode Selector — auto-scrolling carousel */}
+      <div className="mode-chips-container">
+        <span className="mode-chips-label">Mode</span>
+        <div className="mode-chips-track-wrapper">
+          {/* Render chips twice for seamless infinite loop */}
+          <div className="mode-chips-row" role="group" aria-label="Analysis mode options">
+            {[...ANALYSIS_MODES, ...ANALYSIS_MODES].map((m, idx) => {
+              const IconComponent = m.icon
+              const isActive = mode === m.id
+              const isFirst = idx < ANALYSIS_MODES.length
+              return (
+                <button
+                  key={`${m.id}-${idx}`}
+                  id={isFirst ? `mode-${m.id}` : undefined}
+                  type="button"
+                  className={`mode-chip ${isActive ? 'mode-chip--active' : ''}`}
+                  onClick={() => onModeChange(m.id)}
+                  disabled={loading}
+                  aria-pressed={isFirst ? isActive : undefined}
+                  aria-hidden={!isFirst}
+                  tabIndex={isFirst ? 0 : -1}
+                  title={m.description}
+                >
+                  <span className="mode-chip-icon">
+                    <IconComponent size={14} strokeWidth={2} aria-hidden="true" />
+                  </span>
+                  <span className="mode-chip-label">{m.label}</span>
+                </button>
+              )
+            })}
+          </div>
         </div>
       </div>
+
 
       {/* Toolbar */}
       <div className="editor-toolbar">

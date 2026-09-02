@@ -1,4 +1,4 @@
-import { Code2, Sun, Moon } from 'lucide-react'
+import { Sun, Moon } from 'lucide-react'
 
 export default function Header({ theme, onToggleTheme }) {
   const isDark = theme === 'dark'
@@ -7,7 +7,7 @@ export default function Header({ theme, onToggleTheme }) {
     <header className="header">
       <div className="header-left">
         <div className="header-logo-badge" aria-hidden="true">
-          <Code2 size={18} strokeWidth={2.2} />
+          ✦
         </div>
         <div className="header-titles">
           <div className="header-title-row">
