@@ -24,10 +24,10 @@ load_dotenv()
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 GITHUB_API = "https://api.github.com"
-MAX_FILES = 20           # Maximum number of files to fetch and include
-MAX_FILE_CHARS = 4_000   # Characters per file (truncated if larger)
-MAX_TOTAL_CHARS = 80_000 # Hard cap on combined context size
-REQUEST_TIMEOUT = 15.0   # Seconds per HTTP request
+MAX_FILES = 10           # Fetch top 10 highest-priority files (fast & fits Vercel timeouts)
+MAX_FILE_CHARS = 3_000   # Characters per file
+MAX_TOTAL_CHARS = 35_000 # Cap on combined context size for fast LLM inference
+REQUEST_TIMEOUT = 10.0   # Seconds per HTTP request
 
 # ── File filtering rules ──────────────────────────────────────────────────────
 

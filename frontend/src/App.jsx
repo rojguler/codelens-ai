@@ -73,8 +73,19 @@ export default function App() {
       })
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(extractErrorMessage(data.detail, `Server error: ${res.status}`))
+        let errorMsg = `Server error: ${res.status}`
+        try {
+          const rawText = await res.text()
+          try {
+            const data = JSON.parse(rawText)
+            errorMsg = extractErrorMessage(data.detail, errorMsg)
+          } catch {
+            if (rawText && rawText.trim()) {
+              errorMsg = rawText.trim().slice(0, 200)
+            }
+          }
+        } catch {}
+        throw new Error(errorMsg)
       }
 
       const data = await res.json()
@@ -100,8 +111,19 @@ export default function App() {
       })
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(extractErrorMessage(data.detail, `Server error: ${res.status}`))
+        let errorMsg = `Server error: ${res.status}`
+        try {
+          const rawText = await res.text()
+          try {
+            const data = JSON.parse(rawText)
+            errorMsg = extractErrorMessage(data.detail, errorMsg)
+          } catch {
+            if (rawText && rawText.trim()) {
+              errorMsg = rawText.trim().slice(0, 200)
+            }
+          }
+        } catch {}
+        throw new Error(errorMsg)
       }
 
       const data = await res.json()
